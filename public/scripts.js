@@ -1,4 +1,19 @@
 $(document).ready(function () {
+  function addBreadCrumb(editor) {
+    var breadcrumbDiv = document.getElementById('breadcrumb');
+    if (breadcrumbDiv) {
+      breadcrumbDiv.remove();
+    }
+
+    breadcrumbDiv = document.createElement('div');
+    breadcrumbDiv.id = 'breadcrumb';
+    breadcrumbDiv.className =
+      'breadcrumb my-2 bg-dark text-light p-2 rounded w-90';
+    editor.addLineWidget(0, breadcrumbDiv, {
+      above: true,
+    });
+  }
+
   function enterFullScreen(editor) {
     document.querySelectorAll('.CodeMirror').forEach(function (element) {
       element.style.maxHeight = '100vh';
@@ -35,6 +50,7 @@ $(document).ready(function () {
       }
     );
     console.log('JSON editor initialized successfully.');
+    addBreadCrumb(jsonEditor);
   } catch (error) {
     console.error(
       'Initialization of JSON Editor failed:',
@@ -70,6 +86,7 @@ $(document).ready(function () {
       }
     );
     console.log('YAML editor initialized successfully.');
+    addBreadCrumb(yamlEditor);
     document.getElementById('yamlEditorContainer').style.display = 'none';
   } catch (error) {
     console.error(
@@ -83,12 +100,11 @@ $(document).ready(function () {
   yamlEditor.setSize(null, 'auto');
 
   jsonEditor.on('cursorActivity', function () {
-    const path = getJsonPath(jsonEditor);
-    $('#breadcrumb').text(`${path}`);
+    $('#breadcrumb').text(getJsonPath(jsonEditor));
   });
 
   yamlEditor.on('cursorActivity', function () {
-    $('#breadcrumb').text(`${getYamlPath(yamlEditor)}`);
+    $('#breadcrumb').text(getYamlPath(yamlEditor));
   });
 
   $('#jsonYamlToggle').change(function () {
@@ -104,6 +120,7 @@ $(document).ready(function () {
           yamlEditor.setValue(yamlData);
           setTimeout(function () {
             yamlEditor.refresh();
+            addBreadCrumb(yamlEditor);
           }, 1);
           console.log('YAML editor refreshed.'); // gpt_pilot_debugging_log
         } catch (error) {
@@ -135,6 +152,7 @@ $(document).ready(function () {
           jsonEditor.setValue(jsonData);
           setTimeout(function () {
             jsonEditor.refresh();
+            addBreadCrumb(jsonEditor);
           }, 1);
           console.log('JSON editor refreshed.'); // gpt_pilot_debugging_log
         } catch (error) {

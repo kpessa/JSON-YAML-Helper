@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON-YAML Helper</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- CodeMirror CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"
+    />
+    <!-- CodeMirror Addons for code folding and fullscreen -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/fullscreen.min.css"
+    />
+    <!-- Custom styles to match overall look and feel -->
+    <style>
+      .CodeMirror {
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+      }
+
+      .container {
+        width: 90vw; /* 100% of the viewport width */
+      }
+    </style>
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/yaml/yaml.min.js"></script>
+    <!-- CodeMirror Addons for Folding and Fullscreen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/brace-fold.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/xml-fold.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/indent-fold.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/comment-fold.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/fullscreen.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="mt-4 mb-4">JSON-YAML Helper</h2>
+      <!-- Toggle Switch -->
+      <div class="custom-control custom-switch mb-4">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="jsonYamlToggle"
+        />
+        <label class="custom-control-label" for="jsonYamlToggle">
+          Toggle JSON/YAML
+        </label>
+      </div>
+      <!-- JSON Display and Edit Area -->
+      <div id="breadcrumb" class="breadcrumb my-2">Breadcrumb:</div>
+      <div class="form-group">
+        <textarea
+          id="jsonEditor"
+          class="code-editor"
+          style="height: 300px"
+        ></textarea>
+      </div>
+      <!-- YAML Display and Edit Area -->
+      <div class="form-group" id="yamlEditorContainer">
+        <textarea
+          id="yamlEditor"
+          class="code-editor"
+          style="height: 300px"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- js-yaml -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.0.0/dist/js-yaml.min.js"></script>
+
+    <!-- Bootstrap and required scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom script to handle file uploads and conversion -->
+    <script src="scripts.js"></script>
+    <!-- Breadcrumb script -->
+    <script src="breadcrumb.js"></script>
+  </body>
+</html>
